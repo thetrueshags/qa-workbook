@@ -49,7 +49,7 @@ StaySync is a simple hotel booking platform with these components:
 | 03 | [Your First Selenium Tests](exercises/03-selenium-tests.md) | Selenium, test automation, Java (reading/writing) | 45 min |
 | 04 | [Docker — Running Locally](exercises/04-docker-basics.md) | Docker, environment troubleshooting | 30 min |
 | 05 | [Kubernetes — Deployment Review](exercises/05-kubernetes-review.md) | Kubernetes, risk assessment, config review | 30 min |
-| 06 | [Monitoring & Observability](exercises/06-monitoring.md) | Prometheus, Datadog concepts, alerting | 30 min |
+| 06 | [Monitoring & Observability](exercises/06-monitoring.md) | Prometheus, Grafana, Datadog concepts, alerting | 45 min |
 | 07 | [Pipeline Detective](exercises/07-pipeline-detective.md) | Azure Pipelines, CI/CD, shift-left thinking | 30 min |
 | 08 | [Integration Test Plan](exercises/08-integration-test-plan.md) | Test planning, cross-system thinking, communication | 30 min |
 
@@ -57,17 +57,12 @@ Exercises are designed to be worked through in order, but each one is mostly sel
 
 ## Setup
 
-### Prerequisites
-- Docker Desktop installed and running
-- Git
-- A text editor or IDE (IntelliJ IDEA or VS Code recommended)
-- A database client (DBeaver, DataGrip, or similar)
+**First time here?** Follow the [Setup Guide](exercises/SETUP.md) — it walks you through installing everything and verifying it works.
 
-### Quick Start
+### Quick Start (if you've already done the setup)
 
 ```bash
-# Clone the repository
-git clone <repo-url>
+git clone https://github.com/thetrueshags/qa-workbook.git
 cd qa-workbook
 
 # Start the database (needed for exercises 01-03)
