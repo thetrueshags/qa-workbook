@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  staysync-db:
+    image: postgres:15
+    container_name: staysync-db
+    environment:
+      POSTGRES_DB: staysync
+      POSTGRES_USER: staysync
+      POSTGRES_PASSWORD: staysync123
+    ports:
+      - "5432:5432"
+    volumes:
+      - ../database/init.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ../database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql
+      - db-data:/var/lib/postgresql/data
+
+  staysync-api:
+    build:
+      context: ../app
+      dockerfile: Dockerfile
+    container_name: staysync-api
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/staysync
+      SPRING_DATASOURCE_USERNAME: staysync
+      SPRING_DATASOURCE_PASSWORD: staysync123
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: staysync-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../monitoring/promtheus.yml:/etc/prometheus/prometheus.yml
+
+volumes:
+  db-data:

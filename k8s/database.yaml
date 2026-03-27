@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: staysync-db
+  namespace: staysync
+spec:
+  serviceName: staysync-db
+  replicas: 1
+  selector:
+    matchLabels:
+      app: staysync-db
+  template:
+    metadata:
+      labels:
+        app: staysync-db
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: staysync
+            - name: POSTGRES_USER
+              value: staysync
+            - name: POSTGRES_PASSWORD
+              value: staysync123
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: staysync-db
+  namespace: staysync
+spec:
+  selector:
+    app: staysync-db
+  ports:
+    - port: 5432
+      targetPort: 5432
+  clusterIP: None

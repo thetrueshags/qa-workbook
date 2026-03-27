@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  staysync-db:
+    image: postgres:15
+    container_name: staysync-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: staysync
+      POSTGRES_USER: staysync
+      POSTGRES_PASSWORD: staysync123
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./seed.sql:/docker-entrypoint-initdb.d/02-seed.sql
+      - staysync-data:/var/lib/postgresql/data
+
+volumes:
+  staysync-data:

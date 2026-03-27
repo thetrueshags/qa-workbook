@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: staysync-api
+  namespace: staysync
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: staysync-api
+  template:
+    metadata:
+      labels:
+        app: staysync-api
+    spec:
+      containers:
+        - name: staysync-api
+          image: staysync/api:latest
+          ports:
+            - containerPort: 8081
+          envFrom:
+            - configMapRef:
+                name: staysync-config
